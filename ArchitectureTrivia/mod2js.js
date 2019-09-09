@@ -1,1 +1,9 @@
-alert("I am an alert box")
+const alert = () => {
+    this.show = function(){
+        let dialogue = document.getElementById('')
+    }
+
+    this.closer = function(){
+
+    }
+}
