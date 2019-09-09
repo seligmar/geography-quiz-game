@@ -1,4 +1,4 @@
 class Question < ApplicationRecord
-    belongs_to :game 
-    has_many :users, through: :game
+    has_many :games 
+    has_many :users, through: :games
 end

@@ -10,13 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_09_143628) do
+ActiveRecord::Schema.define(version: 2019_09_09_170950) do
 
   create_table "games", force: :cascade do |t|
     t.integer "user_id"
     t.integer "questions_correct"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "question1_id"
+    t.integer "question2_id"
+    t.integer "question3_id"
+    t.integer "question4_id"
+    t.integer "question5_id"
+    t.integer "question6_id"
+    t.integer "question7_id"
+    t.integer "question8_id"
+    t.integer "question9_id"
+    t.integer "question10_id"
   end
 
   create_table "high_scores", force: :cascade do |t|
@@ -39,7 +49,6 @@ ActiveRecord::Schema.define(version: 2019_09_09_143628) do
 
   create_table "users", force: :cascade do |t|
     t.string "name"
-    t.integer "high_score"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
