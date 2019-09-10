@@ -53,22 +53,31 @@
 /* Fixing the Image and its buttons */
 
 .image-box {
-    display: flex;
-    position: absolute;
-    top: 150px;
-    left: 350px;
-    padding: 10px;
-    height: 60%;
-    width: 50%;
-    
+    position: relative;
+    top: 4rem;
+    left: 30rem;
+    width:  500px;
+    height: 400px;
+   
 }
 
+
+
 .quiz-button{
+    display: inline-block;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 10px 20px;
+    border: 3px solid #3777BC;
+    margin: 20px;
     position: relative;
-    margin: 5px;
-    top: 600px;
-    left: 23rem;
-    font-size: 20px;
+    color: #3777BC;
+    letter-spacing: 1px;
+    top: 8rem;
+    left: -8rem;
     
-    
+  }
+ 
+.quiz-button :hover{
+    color: #3777BC;
 }
