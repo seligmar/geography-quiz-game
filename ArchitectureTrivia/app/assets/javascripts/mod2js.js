@@ -16,6 +16,8 @@ function removeStartBox(e) {
 }
 
 function pickRandom() {
+    if (index.length === 0) {
+        endGame()}
     let rand = index[Math.floor(Math.random() * index.length)];
     index.splice(index[rand], 1)
     fetchRandom(rand)
@@ -30,13 +32,20 @@ function fetchRandom(n) {
 function showQuestion(question) {
     let qBoxDiv = document.createElement('div')
     let imageBox = document.createElement('div')
+    let btn1 = document.createElement('button')
+    let btn2 = document.createElement('button')
+    let btn3 = document.createElement('button')
+    let btn4 = document.createElement('button')
     qBoxDiv.className = "question-box"
     imageBox.innerHTML = `<img class = "question-box" src="${question.img}"/>`
-    debugger
     qBoxDiv.append(imageBox)
-     qBoxDiv.innerHTML = `
-        <p>${question.answer1}</p>
-     `
+    btn1.innerText = `${question.answer1}`
+    btn2.innerText = `${question.correct_answer}`
+    btn3.innerText = `${question.answer3}`
+    btn4.innerText = `${question.answer2}`
+
     qBox.append(qBoxDiv)
 }
+
+
 
