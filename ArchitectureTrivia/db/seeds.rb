@@ -19,3 +19,6 @@ taj = Question.create(img: "file:///Users/maryselig/Documents/fewpjs-project-mod
 istanbul = Question.create(img: "file:///Users/maryselig/Documents/fewpjs-project-mode-guidelines/ArchitectureTrivia/app/assets/images/mosque_instanbul.jpg", name: "Hagia Sophia", correct_answer: "Istanbul, Turkey", answer1: "Havana, Cuba", answer2: "Djenne, Mali", answer3: "Kolkata, India")
 manchu_pichu = Question.create(img: "file:///Users/maryselig/Documents/fewpjs-project-mode-guidelines/ArchitectureTrivia/app/assets/images/ManchuPichu.jpg", name: "Machu Picchu", correct_answer: "Cusco, Peru", answer1: "Djenne, Mali", answer2: "Buenos Aires, Argentina", answer3: "Angkor Wat, Cambodia")
 cardiff = Question.create(img: "file:///Users/maryselig/Documents/fewpjs-project-mode-guidelines/ArchitectureTrivia/app/assets/images/cardiff.JPG", name: "Millennium Centre", correct_answer: "Cardiff, Wales, U.K.", answer1: "Dublin, Ireland", answer2: "London, England, U.K.", answer3: "Istanbul, Turkey")
+
+
+

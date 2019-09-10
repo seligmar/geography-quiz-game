@@ -1,8 +1,10 @@
 const usernameForm = document.querySelector("#usernameForm")
 const startBtn = document.querySelector("#button")
 const ol = document.createElement('ol')
+const userInput = document.querySelector("#username")
 
 const qBox = document.querySelector("#qs-go-here")
+const headerBox = document.querySelector("#header-box")
 
 const index = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
@@ -10,18 +12,16 @@ usernameForm.addEventListener("submit", e => {removeStartBox(e), pickRandom()})
 
 function removeStartBox(e) {
     e.preventDefault()
-    document.querySelector(".start-screen").style.display = "none";
-    let header = document.createElement('div')   
-    header.id = 'game-header'
-    header.innerHTML = `<h1>Welcome, ${username}! You have 0 points</h1>`
+    let newUser = {}
+    newUser.name = e.target.children[0].value, 
+    newUser.score = 0 
+    document.querySelector(".start-screen").style.display = "none"; 
+    let headerCont = document.createElement('div')   
+    headerCont.id = 'game-header'
+    headerCont.innerHTML = `<h1>Welcome, ${newUser.name}! You have ${newUser.score} points</h1>`
+    headerBox.append(headerCont)
 }
 
-usernameForm.addEventListener("submit", e => {removeStartBox(e), pickRandom()})
-
-function removeStartBox(e) {
-   e.preventDefault()
-   document.querySelector(".start-screen").style.display = "none";
-}
 
 function pickRandom() {
    if (index.length === 0) {
@@ -47,6 +47,10 @@ function showQuestion(question) {
     qBoxDiv.className = "question-box"
     imageBox.innerHTML = `<img class = "question-box" src="${question.img}"/>`
     qBoxDiv.append(imageBox)
+    btn1.classList.add('not-correct')
+    btn2.classList.add('correct')
+    btn3.classList.add('not-correct')
+    btn4.classList.add('not-correct')
     btn1.innerText = `${question.answer1}`
     btn2.innerText = `${question.correct_answer}`
     btn3.innerText = `${question.answer3}`
@@ -61,9 +65,9 @@ function showQuestion(question) {
 
 
 
-function endGame(username, score) {
-   let endDiv = document.createElement('div')
-   endDiv.className = "question-box"
-   endDiv.innerHTML = `<p>Congratulations, ${username}, you earned ${score}</p>`
-   qBox.append(endDiv)
-}
+// function endGame(username, score) {
+//    let endDiv = document.createElement('div')
+//    endDiv.className = "question-box"
+//    endDiv.innerHTML = `<p>Congratulations, ${username}, you earned ${score}</p>`
+//    qBox.append(endDiv)
+// }

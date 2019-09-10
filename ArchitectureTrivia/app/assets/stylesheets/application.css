@@ -40,13 +40,6 @@
     right: 2%;
   }
 
-.image-box {
-    position: absolute;
-    top: 250px;
-    left: 450px;
-    padding: 10px;
-    height: 25%;
-}
 
 .question-box {
     position: center;
@@ -55,6 +48,7 @@
     padding: 10px;
     height: 50%;
 }
+
 #game-header {
 display: flex;
 justify-content: center;
@@ -62,4 +56,23 @@ background:  crimson;
 opacity: .8;
 height: 5rem;
 padding: 1rem;
+}
+
+.quiz-button {
+    position: relative;
+    margin: 5px;
+    top: 600px;
+    left: 23rem;
+    font-size: 20px; 
+}
+
+.image-box {
+    display: flex;
+    position: absolute;
+    top: 150px;
+    left: 350px;
+    padding: 10px;
+    height: 60%;
+    width: 50%;
+
 }
