@@ -13,3 +13,20 @@
  *= require_tree .
  *= require_self
  */
+ body{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+}
+
+/* Start Screen */
+
+.start-screen{
+    position: absolute;
+    top: 250px;
+    left: 450px;
+    padding: 10px;
+    height: 25%;
+    background-color: crimson
+
+}
+
