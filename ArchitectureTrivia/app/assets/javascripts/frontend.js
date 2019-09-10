@@ -2,7 +2,12 @@
 
    const usernameForm = document.querySelector("#usernameForm")
    const startBtn = document.querySelector("#button")
+   const inputField = document.querySelector('#username')
    const ol = document.createElement('ol')
+
+   inputField.addEventListener("click", e =>{
+       inputField.value = ""
+   })
 
    usernameForm.addEventListener("submit", e => {
        e.preventDefault()
