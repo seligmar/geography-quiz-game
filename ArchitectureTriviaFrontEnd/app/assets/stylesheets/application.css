@@ -54,18 +54,36 @@
 /* Fixing the Image and its buttons */
 
 .image-box {
-    display: flex;
-    position: absolute;
-    top: 150px;
-    left: 350px;
-    padding: 10px;
-    height: 60%;
-    width: 50%;
-    
+    position: relative;
+    top: 4rem;
+    left: 30rem;
+    width:  500px;
+    height: 400px;
+   
 }
 
+
+
 .quiz-button{
+    display: inline-block;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 10px 20px;
+    border: 3px solid #3777BC;
+    margin: 20px;
     position: relative;
+<<<<<<< HEAD
+    color: #3777BC;
+    letter-spacing: 1px;
+    top: 8rem;
+    left: -8rem;
+    
+  }
+ 
+.quiz-button :hover{
+    color: #3777BC;
+}
+=======
     margin: 5px;
     top: 600px;
     left: 23rem;
@@ -101,3 +119,4 @@ padding: 1rem;
 
 }
 
+>>>>>>> d1174978592f150e017d44420f958722b297c00b
