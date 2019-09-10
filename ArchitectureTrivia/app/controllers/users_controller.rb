@@ -1,18 +1,25 @@
 class UsersController < ApplicationController
 
-    def new 
-        @user = User.new
+    def index 
+        @users = User.all 
+        render json: @users
     end 
 
-    # def create 
-    #     @user = User.new(user_info)
-    #     @user.save 
-    #     redirect_to: index 
-    # end 
+    def new 
+        @user = User.new
+        render json: @user
+    end 
 
-    # private 
+    def create 
+        @user = User.new(user_params)
+        @user.save 
+        render json: @user
+    end 
 
-    # def user_info
-    # end 
+    private 
+
+    def user_params
+        params.require(:user).permit(:name, :score)
+    end 
 
 end
