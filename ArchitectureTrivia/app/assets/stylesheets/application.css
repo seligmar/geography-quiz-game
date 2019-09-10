@@ -40,13 +40,7 @@
     right: 2%;
   }
 
-.image-box {
-    position: absolute;
-    top: 250px;
-    left: 450px;
-    padding: 10px;
-    height: 25%;
-}
+ 
 
 .question-box {
     position: center;
@@ -54,4 +48,27 @@
     left: 450px;
     padding: 10px;
     height: 50%;
+}
+
+/* Fixing the Image and its buttons */
+
+.image-box {
+    display: flex;
+    position: absolute;
+    top: 150px;
+    left: 350px;
+    padding: 10px;
+    height: 60%;
+    width: 50%;
+    
+}
+
+.quiz-button{
+    position: relative;
+    margin: 5px;
+    top: 600px;
+    left: 23rem;
+    font-size: 20px;
+    
+    
 }
