@@ -5,11 +5,15 @@ const ol = document.createElement('ol')
 const qBox = document.querySelector("#qs-go-here")
 
 const index = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
 usernameForm.addEventListener("submit", e => {removeStartBox(e), pickRandom()})
 
 function removeStartBox(e) {
     e.preventDefault()
     document.querySelector(".start-screen").style.display = "none";
+    let header = document.createElement('div')   
+    header.id = 'game-header'
+    header.innerHTML = `<h1>Welcome, ${username}! You have 0 points</h1>`
 }
 
 usernameForm.addEventListener("submit", e => {removeStartBox(e), pickRandom()})
@@ -33,6 +37,7 @@ function fetchRandom(n) {
 }
 
 function showQuestion(question) {
+    qBox.innerHTML = ""
     let qBoxDiv = document.createElement('div')
     let imageBox = document.createElement('div')
     let btn1 = document.createElement('button')
@@ -50,11 +55,15 @@ function showQuestion(question) {
     imageBox.append(btn2)
     imageBox.append(btn3)
     imageBox.append(btn4)
-    qBox.append(qBoxDiv)
+    qBox.append(qBoxDiv) 
+ 
 }
 
 
 
-function endGame() {
-   console.log("OK")
+function endGame(username, score) {
+   let endDiv = document.createElement('div')
+   endDiv.className = "question-box"
+   endDiv.innerHTML = `<p>Congratulations, ${username}, you earned ${score}</p>`
+   qBox.append(endDiv)
 }

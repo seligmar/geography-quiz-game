@@ -55,3 +55,11 @@
     padding: 10px;
     height: 50%;
 }
+#game-header {
+display: flex;
+justify-content: center;
+background:  crimson;
+opacity: .8;
+height: 5rem;
+padding: 1rem;
+}
