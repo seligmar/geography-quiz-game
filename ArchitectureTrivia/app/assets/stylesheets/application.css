@@ -30,3 +30,10 @@
 
 }
 
+.image-box {
+    position: absolute;
+    top: 250px;
+    left: 450px;
+    padding: 10px;
+    height: 25%;
+}
