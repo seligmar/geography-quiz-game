@@ -70,10 +70,10 @@
     top: 600px;
     left: 23rem;
     font-size: 20px;
-    
-    
 
-#game-header {
+}    
+
+.game-header-box {
 display: flex;
 justify-content: center;
 background:  crimson;
@@ -100,3 +100,4 @@ padding: 1rem;
     width: 50%;
 
 }
+
