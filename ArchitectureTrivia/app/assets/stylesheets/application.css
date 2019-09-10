@@ -47,3 +47,11 @@
     padding: 10px;
     height: 25%;
 }
+
+.question-box {
+    position: center;
+    top: 250px;
+    left: 450px;
+    padding: 10px;
+    height: 50%;
+}
