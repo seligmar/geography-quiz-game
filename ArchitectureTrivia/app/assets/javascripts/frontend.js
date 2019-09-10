@@ -11,7 +11,7 @@
 
    usernameForm.addEventListener("submit", e => {
        e.preventDefault()
-       document.querySelector(".start-screen").style.display = "none";
+       document.querySelector(".start-screen").style.display = "none"; //Hide this after clicking the submit button
    })
 
 
