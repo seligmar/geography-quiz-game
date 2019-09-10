@@ -46,6 +46,10 @@ function showQuestion(question) {
     btn2.innerText = `${question.correct_answer}`
     btn3.innerText = `${question.answer3}`
     btn4.innerText = `${question.answer2}`
+    imageBox.append(btn1)
+    imageBox.append(btn2)
+    imageBox.append(btn3)
+    imageBox.append(btn4)
     qBox.append(qBoxDiv)
 }
 
