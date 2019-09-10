@@ -10,13 +10,18 @@ const qBox = document.querySelector("#qs-go-here")
 const index = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 
+
 userInput.addEventListener("click", e => { userInput.value = ""})
+
 
 usernameForm.addEventListener("submit", e => {removeStartBox(e), pickRandom()})
 
 function removeStartBox(e) {
     e.preventDefault()
     document.querySelector(".start-screen").style.display = "none";
+    let header = document.createElement('div')   
+    header.id = 'game-header'
+    header.innerHTML = `<h1>Welcome, ${username}! You have 0 points</h1>`
 }
 
 usernameForm.addEventListener("submit", e => {removeStartBox(e), pickRandom()})
@@ -40,6 +45,7 @@ function fetchRandom(n) {
 }
 
 function showQuestion(question) {
+
    qBox.innerHTML = ""
    let qBoxDiv = document.createElement('div')
    let imageBox = document.createElement('div')
@@ -66,12 +72,39 @@ function showQuestion(question) {
    imageBox.append(btn3)
    imageBox.append(btn4)
    qBox.append(qBoxDiv)
+
+    let qBoxDiv = document.createElement('div')
+    let imageBox = document.createElement('div')
+    let btn1 = document.createElement('button')
+    let btn2 = document.createElement('button')
+    let btn3 = document.createElement('button')
+    let btn4 = document.createElement('button')
+    qBoxDiv.className = "question-box"
+    imageBox.innerHTML = `<img class = "question-box" src="${question.img}"/>`
+    qBoxDiv.append(imageBox)
+    btn1.innerText = `${question.answer1}`
+    btn2.innerText = `${question.correct_answer}`
+    btn3.innerText = `${question.answer3}`
+    btn4.innerText = `${question.answer2}`
+    imageBox.append(btn1)
+    imageBox.append(btn2)
+    imageBox.append(btn3)
+    imageBox.append(btn4)
+    qBox.append(qBoxDiv) 
+
  
 }
 
 
 
 
-function endGame() {
-  console.log("OK")
+
+
+
+function endGame(username, score) {
+   let endDiv = document.createElement('div')
+   endDiv.className = "question-box"
+   endDiv.innerHTML = `<p>Congratulations, ${username}, you earned ${score}</p>`
+   qBox.append(endDiv)
+
 }

@@ -50,6 +50,7 @@
     height: 50%;
 }
 
+
 /* Fixing the Image and its buttons */
 
 .image-box {
@@ -71,4 +72,13 @@
     font-size: 20px;
     
     
+
+#game-header {
+display: flex;
+justify-content: center;
+background:  crimson;
+opacity: .8;
+height: 5rem;
+padding: 1rem;
+
 }
