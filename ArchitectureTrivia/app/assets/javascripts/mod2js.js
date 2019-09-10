@@ -3,6 +3,7 @@ const startBtn = document.querySelector("#button")
 const ol = document.createElement('ol')
 const qBox = document.querySelector("#qs-go-here")
 const index = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
 usernameForm.addEventListener("submit", e => {removeStartBox(e), pickRandom()})
 function removeStartBox(e) {
    e.preventDefault()
@@ -37,3 +38,6 @@ function showQuestion(question) {
    qBox.append(qBoxDiv)
 }
 
+function endGame() {
+   console.log("OK")
+}
