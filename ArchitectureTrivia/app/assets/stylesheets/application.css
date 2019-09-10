@@ -15,3 +15,35 @@
  */
 
  
+ body{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+}
+
+/* Start Screen */
+
+.start-screen{
+    position: absolute;
+    top: 250px;
+    left: 450px;
+    padding: 10px;
+    height: 25%;
+    background-color: crimson
+
+}
+
+/* High Score */
+
+.score-block {
+    position: absolute;
+    top: 2%;
+    right: 2%;
+  }
+
+.image-box {
+    position: absolute;
+    top: 250px;
+    left: 450px;
+    padding: 10px;
+    height: 25%;
+}
