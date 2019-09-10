@@ -22,9 +22,24 @@ function removeStartBox(e) {
     document.querySelector(".start-screen").style.display = "none"; 
     let headerCont = document.createElement('div')   
     headerCont.classList.add('game-header-box')
-    headerCont.innerHTML = `<h1>Welcome, ${newUser.name}! You have ${newUser.score} points</h1>
-    <h3>Where is this structure located?</h3>`
+    let welcomeH1 = document.createElement('H2')
+    let scoreH2 = document.createElement('H2')
+    let questionH3 = document.createElement('H3')
+    questionH3.innerHTML = "Where is this structure located?"
+    welcomeH1.innerHTML = `Welcome, ${newUser.name}! You have: `
+    scoreH2.innerHTML = `${newUser.score} points`
+    headerCont.append(welcomeH1)
+    headerCont.append(scoreH2)
+    headerCont.append(questionH3)
     headerBox.append(headerCont)
+    highScore(e)
+}
+
+function highScore(e) {
+    // let highScoreBox = document.createAttribute('div')
+    // highScoreBox.innerHTML =  "<p class= "score-block" id="leaderboard" HIGHSCORES:>"
+    // ///this needs to call the high scores
+    // headerBox.append(highScoreBox)
 }
 
 function pickRandom() {
@@ -52,6 +67,11 @@ function showQuestion(question) {
     imageBox.innerHTML = `<img class = "question-box" src="${question.img}"/>`
     qBoxDiv.append(imageBox)
     btn1.classList.add('not-correct')
+    btn1.addEventListener('click', e => incorrectAnswer(e))
+    btn2.addEventListener('click', e => correctAnswer(e))
+    btn3.addEventListener('click', e => incorrectAnswer(e))
+    btn4.addEventListener('click', e => incorrectAnswer(e))
+    btn1.classList.add('not-correct')
     btn2.classList.add('correct')
     btn3.classList.add('not-correct')
     btn4.classList.add('not-correct')
@@ -65,6 +85,15 @@ function showQuestion(question) {
     imageBox.append(btn4)
     qBox.append(qBoxDiv)  
 }
+
+function incorrectAnswer(e) {
+
+}
+
+function correctAnswer(e) {
+    e.target.parentElement.parentElement.parentElement.parentElement.children[1].childNodes[0].children[1].innerText =
+    (parseInt(e.target.parentElement.parentElement.parentElement.parentElement.children[1].childNodes[0].children[1].innerText) + 1) + " point(s)"
+ }
 
 function endGame(newUser) {
    let endDiv = document.createElement('div')
