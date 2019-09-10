@@ -7,16 +7,31 @@
     <title>Architecture Trivia</title>
     <link rel = "stylesheet"
    type = "text/css"
-   href = "styles/home.css" />
+   href = "app/assets/stylesheets/application.css" />
 </head>
 <body>
-    <div id="dialogue" class="container">
-        <div class="header">Welcom to Architectural Trivia</div>
-        <div id="body-id" class="dlg-body">Hello. Welcome to this Trivia. Please enter your bloody name to play. Thanks betch</div>
-        <input type="text">
-        <div class="footer"></div>
+    <!-- Start of the Start Screen-->
+    <div class="start-screen">
+        <div style="text-align: center">
+            <div class="start-screen-title">Welcome to Architectural Trivia!</div>
+            <div class="start-screen-text">
+                <p>Its time to test your understanding on famous buildings</p>
+                <p>Guess the image on which country its from. May the odds be forever in your favour</p>
+            </div>
+            <form id="usernameForm"> 
+            <input
+              id="username"
+              type="text"
+              name="username"
+              value="Enter your username"
+             /><br />
+            <input id="button" type="submit" value="Start" />
+            </form>
+        </div>
     </div>
+    <!-- End of Start Screen -->
     
-    <script src= "mod2js.js" defer></script>    
+    <script src= "mod2js.js" defer></script>  
+    <script src="app/assets/javascripts/frontend.js"></script>  
 </body>
 </html>
