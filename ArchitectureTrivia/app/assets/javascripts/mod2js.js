@@ -49,10 +49,10 @@ function showQuestion(question) {
     let btn3 = document.createElement('button')
     let btn4 = document.createElement('button')
     qBoxDiv.className = "question-box"
-    imageBox.innerHTML = `<img class = "question-box" src="${question.img}"/>`
+    imageBox.innerHTML = `<img class = "image-box" src="${question.img}"/>`
     qBoxDiv.append(imageBox)
-    btn1.classList.add('not-correct')
-    btn2.classList.add('correct')
+    btn1.classList.add('not-correct') //event to a not correct and then random() 
+    btn2.classList.add('correct') //event to a correct with increase likes at the top and then random() 
     btn3.classList.add('not-correct')
     btn4.classList.add('not-correct')
     btn1.innerText = `${question.answer1}`
