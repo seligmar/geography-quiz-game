@@ -19,12 +19,16 @@
  }
  /* Start Screen */
  .start-screen{
-    position: absolute;
+    background-color: crimson;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    display: block;
     top: 250px;
     left: 450px;
     padding: 10px;
     height: 25%;
-    background-color: crimson
+   
  }
  /* High Score */
  .score-block {
@@ -32,23 +36,34 @@
     top: 2%;
     right: 2%;
   }
+
  .question-box {
-    position: center;
-    top: 250px;
-    left: 450px;
-    padding: 10px;
-    height: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block; 
+    max-width: 75%;
+    height: auto;
  }
  /* Fixing the Image and its buttons */
- .image-box {
-    position: relative;
-    top: 4rem;
-    left: 30rem;
-    width:  500px;
-    height: 400px;
+ .img-box {
+    margin-left: auto;
+    margin-right: auto;
+    display: block; 
+    max-width: 75%;
+    height: auto;
+    border: 7px solid black; 
  }
  
  .game-header-box {
-    background-color: crimson
+    top: 250px;
+    left: 450px;
+    padding: 10px;
+    height: 25%;
+    background-color: crimson;
  }
  
+ .response-box {
+ text-align: center;
+ padding: 25px; 
+
+ }

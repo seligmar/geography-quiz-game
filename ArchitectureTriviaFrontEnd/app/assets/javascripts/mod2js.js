@@ -71,7 +71,7 @@ function showQuestion(question) {
     let btn3 = document.createElement('button')
     let btn4 = document.createElement('button')
     qBoxDiv.className = "question-box"
-    imageBox.innerHTML = `<img class = "question-box" src="${question.img}"/>`
+    imageBox.innerHTML = `<img class = "img-box" src="${question.img}"/>`
     qBoxDiv.append(imageBox)
     btn1.classList.add('not-correct')
     btn1.addEventListener('click', e => incorrectAnswer(e, question))
