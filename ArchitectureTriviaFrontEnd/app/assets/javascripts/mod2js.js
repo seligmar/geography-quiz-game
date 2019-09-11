@@ -1,4 +1,3 @@
-
 const usernameForm = document.querySelector("#usernameForm")
 const startBtn = document.querySelector("#button")
 const ol = document.createElement('ol')
@@ -15,7 +14,7 @@ const currentUser = {}
 
 userInput.addEventListener("click", e => { userInput.value = ""})
 
-usernameForm.addEventListener("submit", e => {removeStartBox(e), pickRandom(e)})
+usernameForm.addEventListener("submit", e => removeStartBox(e))
 
 function removeStartBox(e) {
     e.preventDefault()
@@ -52,39 +51,39 @@ function highScore(e) {
     // headerBox.append(highScoreBox)
 }
 
-function pickRandom(e) {
-    e.preventDefault();
+function pickRandom(game) {
+   // e.preventDefault();
   if (index2.length === 0) {
-      endQuiz(e)}  
+      endQuiz(game)}  
   else {
   let rand = index2[Math.floor(Math.random() * index2.length)];
   var index = index2.indexOf(rand);
   if (index > -1) {
      index2.splice(index, 1);
   }
-  fetchRandom(rand) }
+  fetchRandom(game, rand) }
 }
 
-function fetchRandom(n) {
+function fetchRandom(game, n) {
   return fetch(`http://localhost:3000/questions/${n}`)
   .catch()
   .then(resp => resp.json())
-  .then(showQuestion)
+  .then(resp => showQuestion(game, resp))
 }
 
-function showQuestion(question) {
+function showQuestion(game, question) {
     let qBoxDiv = document.createElement('div')
     let imageBox = document.createElement('div')
     qBoxDiv.className = "question-box"
     imageBox.innerHTML = `<img class = "img-box" src="${question.img}"/>`
     qBoxDiv.append(imageBox)
     qBox.append(qBoxDiv)  
-    createButtons(question)
+    createButtons(game, question)
 }
 
 //assign button ids and randomize them 
 
-function createButtons(question) {
+function createButtons(game, question) {
     let quizBtns = document.createElement('div')
     quizBtns.className = "quiz-button"
     let btn1 = document.createElement('button')
@@ -95,7 +94,7 @@ function createButtons(question) {
     let buttons = [btn1, btn2, btn3, btn4] 
 
     btn1.addEventListener('click', e => incorrectAnswer(e, question))
-    btn2.addEventListener('click', e => {correctAnswer(e, question), updateScore(e, currentUser)})
+    btn2.addEventListener('click', e => {correctAnswer(e, game, question), updateScore(e, game)})
     btn3.addEventListener('click', e => incorrectAnswer(e, question))
     btn4.addEventListener('click', e => incorrectAnswer(e, question))
 
@@ -120,7 +119,7 @@ function createButtons(question) {
     
 }
 
-function incorrectAnswer(e, question) {
+function incorrectAnswer(e, game, question) {
     e.preventDefault()
     let responseDiv = document.createElement('div')
     responseDiv.classList.add('response-box')
@@ -128,10 +127,10 @@ function incorrectAnswer(e, question) {
     is located in ${question.correct_answer}.`
     // add link to wikipedia page for a "learn more here"?
     qBox.append(responseDiv)
-    pickRandom(e)
+    pickRandom(game)
 }
 
-function correctAnswer(e, question) {
+function correctAnswer(e, game, question) {
     // let score_value = document.querySelector("#name_id")
     // score_value.innerText = (parseInt(score_value.innerText) + 1) + " point(s)";
      let responseDivCorrect = document.createElement('div')
@@ -140,8 +139,6 @@ function correctAnswer(e, question) {
      is located in ${question.correct_answer}.`
      // add link to wikipedia page for a "learn more here"?
      qBox.append(responseDivCorrect)
-     updateScore()
-     pickRandom(e)
     }
 
 function createUser(newUser) {
@@ -156,14 +153,9 @@ function createUser(newUser) {
     .then(resp => resp.json())
     .then(resp => createGameinApi(resp))
    // .then(resp => updateScore(resp))
-    .then(resp => setCurrentUser(resp))
 } 
 
-function setCurrentUser(resp) {
-    currentUser.id = resp.id
-    currentUser.score = resp.score
-    return currentUser
-}
+
 
 function createGameinApi(newUserInAPI) {
     return fetch("http://localhost:3000/games", {
@@ -177,25 +169,25 @@ function createGameinApi(newUserInAPI) {
             score: newUserInAPI.score
         })
     }).then(resp => resp.json())
+    .then(resp => pickRandom(resp))
 }
 
-function updateScore(currentUser) {
-    debugger
-    let userId = currentUser.id
-    return fetch(`http://localhost:3000/users/${userId}`, {
+function updateScore(e, game) {
+    return fetch(`http://localhost:3000/games/${game.id}`, {
         method: "PATCH", 
         headers: {
             "content-type": "application/json", 
             accept: "application/json"
         }, 
         body: JSON.stringify({
-            score: newUser.score + 1
+            score: game.score += 1
         })
     }).then(resp => resp.json())
+    .then(pickRandom(game))
 }
 
-function endQuiz(e) {
-    e.preventDefault()
+function endQuiz(game) {
+   // e.preventDefault()
     let endGameDiv = document.createElement('div')
     endGameDiv.innerHTML = `<div class = "game-header-box">Congratulations, ${newUser.name}, you earned ${newUser.score}!</div>`
     let newGameBtn = document.createElement('button')
