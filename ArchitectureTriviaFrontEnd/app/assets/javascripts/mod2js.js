@@ -12,14 +12,19 @@ const index = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 userInput.addEventListener("click", e => { userInput.value = ""})
 
-usernameForm.addEventListener("submit", e => {removeStartBox(e), pickRandom()})
+usernameForm.addEventListener("submit", e => {removeStartBox(e), pickRandom(e)})
 
 function removeStartBox(e) {
     e.preventDefault()
+    document.querySelector(".start-screen").style.display = "none"; 
+    createUserBar(e)
+    highScore(e)
+}
+
+function createUserBar(e) {
     let newUser = {}
     newUser.name = e.target.children[0].value, 
     newUser.score = 0 
-    document.querySelector(".start-screen").style.display = "none"; 
     let headerCont = document.createElement('div')   
     headerCont.classList.add('game-header-box')
     let welcomeH1 = document.createElement('H2')
@@ -32,10 +37,8 @@ function removeStartBox(e) {
     headerCont.append(scoreH2)
     headerCont.append(questionH3)
     headerBox.append(headerCont)
-    highScore(e)
+    createUser(newUser)
 }
-
-//
 
 function highScore(e) {
     // let highScoreBox = document.createAttribute('div')
@@ -44,13 +47,15 @@ function highScore(e) {
     // headerBox.append(highScoreBox)
 }
 
-function pickRandom() {
+function pickRandom(e) {
+    e.preventDefault
   if (index.length === 0) {
       endGame()}
   let rand = index[Math.floor(Math.random() * index.length)];
   index.splice(index[rand], 1)
   fetchRandom(rand)
 }
+
 function fetchRandom(n) {
   return fetch(`http://localhost:3000/questions/${n}`)
   .then(resp => resp.json())
@@ -58,7 +63,7 @@ function fetchRandom(n) {
 }
 
 function showQuestion(question) {
-   qBox.innerHTML = ""
+  // qBox.innerHTML = ""
     let qBoxDiv = document.createElement('div')
     let imageBox = document.createElement('div')
     let btn1 = document.createElement('button')
@@ -69,10 +74,10 @@ function showQuestion(question) {
     imageBox.innerHTML = `<img class = "question-box" src="${question.img}"/>`
     qBoxDiv.append(imageBox)
     btn1.classList.add('not-correct')
-    btn1.addEventListener('click', e => incorrectAnswer(e))
-    btn2.addEventListener('click', e => correctAnswer(e))
-    btn3.addEventListener('click', e => incorrectAnswer(e))
-    btn4.addEventListener('click', e => incorrectAnswer(e))
+    btn1.addEventListener('click', e => incorrectAnswer(e, question))
+    btn2.addEventListener('click', e => {patchAPI(e)})
+    btn3.addEventListener('click', e => incorrectAnswer(e, question))
+    btn4.addEventListener('click', e => incorrectAnswer(e, question))
     btn1.classList.add('not-correct')
     btn2.classList.add('correct')
     btn3.classList.add('not-correct')
@@ -90,13 +95,24 @@ function showQuestion(question) {
 
 //assign button ids and randomize them 
 
-function incorrectAnswer(e) {
+function incorrectAnswer(e, question) {
+    e.preventDefault()
+    let responseDiv = document.createElement('div')
+    responseDiv.classList.add('response-box')
+    responseDiv.innerText = `Sorry, that is not correct. The ${question.name}
+    is located in ${question.correct_answer}.`
+    // add link to wikipedia page for a "learn more here"?
+    qBox.append(responseDiv)
+    pickRandom(e)
+}
 
+function patchAPI(e, user) {
+    //then correctAnswer(e)
 }
 
 function correctAnswer(e) {
-    e.target.parentElement.parentElement.parentElement.parentElement.children[1].childNodes[0].children[1].innerText =
-    (parseInt(e.target.parentElement.parentElement.parentElement.parentElement.children[1].childNodes[0].children[1].innerText) + 1) + " point(s)"
+    let scoreNum = e.target.parentElement.parentElement.parentElement.parentElement.children[1].childNodes[0].children[1].innerText
+    scoreNum = (parseInt(scoreNum) + 1) + " point(s)"
  }
 
 function endGame(newUser) {
