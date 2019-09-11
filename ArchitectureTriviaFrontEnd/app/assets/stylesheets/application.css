@@ -46,9 +46,26 @@
     left: 30rem;
     width:  500px;
     height: 400px;
- }
+   
+}
+
+
+
+.quiz-button{
+    display: inline-block;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 10px 20px;
+    border: 3px solid #3777BC;
+    margin: 20px;
+    position: relative;
+    color: #3777BC;
+    letter-spacing: 1px;
+    top: 8rem;
+    left: -8rem;
+    
+  }
  
- .game-header-box {
-    background-color: crimson
- }
- 
+.quiz-button :hover{
+    color: #3777BC;
+}
