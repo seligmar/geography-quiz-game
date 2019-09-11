@@ -81,7 +81,7 @@ function showQuestion(question) {
     quizBtns.append(btn4)
     
     qBoxDiv.className = "question-box"
-    imageBox.innerHTML = `<img class = "question-box" src="${question.img}"/>`
+    imageBox.innerHTML = `<img class = "img-box" src="${question.img}"/>`
     qBoxDiv.append(imageBox)
     
     btn1.classList.add('not-correct')
