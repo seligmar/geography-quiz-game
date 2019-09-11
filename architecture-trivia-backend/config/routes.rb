@@ -8,4 +8,7 @@ Rails.application.routes.draw do
   patch "/users/:id", to: "users#update"
   post "/users", to: "users#create"
 
+  get "/games", to: "games#index"
+  post "/games", to: "games#create"
+  
 end
