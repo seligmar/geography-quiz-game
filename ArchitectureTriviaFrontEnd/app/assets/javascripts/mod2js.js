@@ -22,7 +22,7 @@ function removeStartBox(e) {
 }
 
 function createUserBar(e) {
-    let newUser = {}
+    newUser = {}
     newUser.name = e.target.children[0].value, 
     newUser.score = 0 
     let headerCont = document.createElement('div')   
@@ -49,8 +49,8 @@ function highScore(e) {
 
 function pickRandom(e) {
     e.preventDefault();
-//   if (index2.length === 0) {
-//       endGame()}
+  if (index2.length === 0) {
+      endGame()}
   let rand = index2[Math.floor(Math.random() * index2.length)];
   var index = index2.indexOf(rand);
   if (index > -1) {
@@ -88,7 +88,7 @@ function showQuestion(question) {
     
     btn1.classList.add('not-correct')
     btn1.addEventListener('click', e => incorrectAnswer(e, question))
-    btn2.addEventListener('click', e => {patchAPI(e)})
+    btn2.addEventListener('click', e => correctAnswer(e))
     btn3.addEventListener('click', e => incorrectAnswer(e, question))
     btn4.addEventListener('click', e => incorrectAnswer(e, question))
     btn1.classList.add('not-correct')
@@ -124,13 +124,9 @@ function incorrectAnswer(e, question) {
     pickRandom(e)
 }
 
-function patchAPI(e, user) {
-    //then correctAnswer(e)
-}
-
 function correctAnswer(e) {
-    let scoreNum = e.target.parentElement.parentElement.parentElement.parentElement.children[1].childNodes[0].children[1].innerText
-    scoreNum = (parseInt(scoreNum) + 1) + " point(s)"
+    e.target.parentElement.parentElement.parentElement.parentElement.parentElement.children[1].childNodes[0].childNodes[1].innerText
+     = (parseInt(e.target.parentElement.parentElement.parentElement.parentElement.parentElement.children[1].childNodes[0].childNodes[1].innerText) + 1) + " point(s)"
  }
 
 function endGame(newUser) {
@@ -151,9 +147,9 @@ function createUser(newUser) {
             accept: "application/json"
         }, 
         body: JSON.stringify(newUser)
-    }).then(resp => resp.json).then(createGame(newUser))
+    }).then(resp => resp.json()).then(createGame(newUser))
 }
 
 function createGame(newUser){
-    console.log(newUser)
+   // return fetch('')
 }
