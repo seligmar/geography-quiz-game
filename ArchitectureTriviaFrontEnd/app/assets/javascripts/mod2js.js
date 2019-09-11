@@ -71,6 +71,14 @@ function showQuestion(question) {
     let btn2 = document.createElement('button')
     let btn3 = document.createElement('button')
     let btn4 = document.createElement('button')
+
+    let quizBtns = document.createElement('div')
+    quizBtns.className = "quiz-button"
+    
+    quizBtns.append(btn1)
+    quizBtns.append(btn2)
+    quizBtns.append(btn3)
+    quizBtns.append(btn4)
     
     qBoxDiv.className = "question-box"
     imageBox.innerHTML = `<img class = "question-box" src="${question.img}"/>`
@@ -91,10 +99,11 @@ function showQuestion(question) {
     btn3.innerText = `${question.answer3}`
     btn4.innerText = `${question.answer2}`
 
-    imageBox.append(btn1)
-    imageBox.append(btn2)
-    imageBox.append(btn3)
-    imageBox.append(btn4)
+    quizBtns.append(btn1)
+    quizBtns.append(btn2)
+    quizBtns.append(btn3)
+    quizBtns.append(btn4)
+    imageBox.append(quizBtns)
     qBox.append(qBoxDiv)  
 }
 
