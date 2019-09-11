@@ -50,25 +50,10 @@ function highScore(e) {
     // headerBox.append(highScoreBox)
 }
 
-function createGameinApi(e) {
-    debugger
-    return fetch("http://localhost:3000/games", {
-        method: "POST", 
-        headers: {
-            "content-type": "application/json", 
-            accept: "application/json"
-        }, 
-        body: JSON.stringify({
-            user: newUser.name, 
-            score: newUser.score
-        })
-    }).then(resp => resp.json())
-}
-
 function pickRandom(e) {
     e.preventDefault();
   if (index2.length === 0) {
-      endGame(e)}  
+      endQuiz(e)}  
   else {
   let rand = index2[Math.floor(Math.random() * index2.length)];
   var index = index2.indexOf(rand);
@@ -153,6 +138,7 @@ function correctAnswer(e, question) {
      is located in ${question.correct_answer}.`
      // add link to wikipedia page for a "learn more here"?
      qBox.append(responseDivCorrect)
+     updateScore()
      pickRandom(e)
     }
 
@@ -164,9 +150,42 @@ function createUser(newUser) {
             accept: "application/json"
         }, 
         body: JSON.stringify(newUser)
-    }).then(resp => resp.json())}
+    })
+    .then(resp => resp.json())
+    .then(resp => createGameinApi(resp))
+    .then(resp => updateScore(resp))
+} 
 
-function endGame(e) {
+
+function createGameinApi(newUserInAPI) {
+    return fetch("http://localhost:3000/games", {
+        method: "POST", 
+        headers: {
+            "content-type": "application/json", 
+            accept: "application/json"
+        }, 
+        body: JSON.stringify({
+            user_id: newUserInAPI.id, 
+            score: newUserInAPI.score
+        })
+    }).then(resp => resp.json())
+}
+
+function updateScore(newUserInAPI) {
+    debugger
+    return fetch(`http://localhost:3000/users/${newUserInAPI.id}`, {
+        method: "PATCH", 
+        headers: {
+            "content-type": "application/json", 
+            accept: "application/json"
+        }, 
+        body: JSON.stringify({
+            score: newUserInAPI.score + 1
+        })
+    }).then(resp => resp.json())
+}
+
+function endQuiz(e) {
     e.preventDefault()
     let endGameDiv = document.createElement('div')
     endGameDiv.classList.add("quiz-button")
