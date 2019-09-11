@@ -11,6 +11,8 @@ const headerBox = document.querySelector("#header-box")
 
 const index2 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
+const currentUser = {}  
+
 userInput.addEventListener("click", e => { userInput.value = ""})
 
 usernameForm.addEventListener("submit", e => {removeStartBox(e), pickRandom(e)})
@@ -93,19 +95,19 @@ function createButtons(question) {
     let buttons = [btn1, btn2, btn3, btn4] 
 
     btn1.addEventListener('click', e => incorrectAnswer(e, question))
-    btn2.addEventListener('click', e => correctAnswer(e, question))
+    btn2.addEventListener('click', e => {correctAnswer(e, question), updateScore(e, currentUser)})
     btn3.addEventListener('click', e => incorrectAnswer(e, question))
     btn4.addEventListener('click', e => incorrectAnswer(e, question))
 
-    btn1.classList.add('not-correct')
-    btn2.classList.add('correct')
-    btn3.classList.add('not-correct')
-    btn4.classList.add('not-correct')
+    btn1.classList.add('question-buttons')
+    btn2.classList.add('question-buttons')
+    btn3.classList.add('question-buttons')
+    btn4.classList.add('question-buttons')
 
-    btn1.innerText = `${question.answers[0]}`
+    btn1.innerText = `${question.answer1}`
     btn2.innerText = `${question.correct_answer}`
-    btn3.innerText = `${question.answers[2]}`
-    btn4.innerText = `${question.answers[3]}`
+    btn3.innerText = `${question.answer2}`
+    btn4.innerText = `${question.answer3}`
 
     while (buttons.length > 0) {
     let randBtn = buttons[Math.floor(Math.random() * buttons.length)];
@@ -153,9 +155,15 @@ function createUser(newUser) {
     })
     .then(resp => resp.json())
     .then(resp => createGameinApi(resp))
-    .then(resp => updateScore(resp))
+   // .then(resp => updateScore(resp))
+    .then(resp => setCurrentUser(resp))
 } 
 
+function setCurrentUser(resp) {
+    currentUser.id = resp.id
+    currentUser.score = resp.score
+    return currentUser
+}
 
 function createGameinApi(newUserInAPI) {
     return fetch("http://localhost:3000/games", {
@@ -171,16 +179,17 @@ function createGameinApi(newUserInAPI) {
     }).then(resp => resp.json())
 }
 
-function updateScore(newUserInAPI) {
+function updateScore(currentUser) {
     debugger
-    return fetch(`http://localhost:3000/users/${newUserInAPI.id}`, {
+    let userId = currentUser.id
+    return fetch(`http://localhost:3000/users/${userId}`, {
         method: "PATCH", 
         headers: {
             "content-type": "application/json", 
             accept: "application/json"
         }, 
         body: JSON.stringify({
-            score: newUserInAPI.score + 1
+            score: newUser.score + 1
         })
     }).then(resp => resp.json())
 }
@@ -188,8 +197,7 @@ function updateScore(newUserInAPI) {
 function endQuiz(e) {
     e.preventDefault()
     let endGameDiv = document.createElement('div')
-    endGameDiv.classList.add("quiz-button")
-    endGameDiv.innerText = `Congratulations, ${newUser.name}, you earned ${newUser.score}!`
+    endGameDiv.innerHTML = `<div class = "game-header-box">Congratulations, ${newUser.name}, you earned ${newUser.score}!</div>`
     let newGameBtn = document.createElement('button')
     newGameBtn.innerText = "Start a new quiz"
     newGameBtn.addEventListener('click', startNew)
