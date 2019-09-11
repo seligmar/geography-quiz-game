@@ -1,0 +1,36 @@
+function createButtons(question) {
+    let quizBtns = document.createElement('div')
+    quizBtns.className = "quiz-button"
+    let btn1 = document.createElement('button')
+    let btn2 = document.createElement('button')
+    let btn3 = document.createElement('button')
+    let btn4 = document.createElement('button')
+
+    let buttons = [btn1, btn2, btn3, btn4] 
+
+    btn1.addEventListener('click', e => incorrectAnswer(e, question))
+    btn2.addEventListener('click', e => correctAnswer(e, question))
+    btn3.addEventListener('click', e => incorrectAnswer(e, question))
+    btn4.addEventListener('click', e => incorrectAnswer(e, question))
+
+    btn1.classList.add('not-correct')
+    btn2.classList.add('correct')
+    btn3.classList.add('not-correct')
+    btn4.classList.add('not-correct')
+
+    btn1.innerText = `${question.answer1}`
+    btn2.innerText = `${question.correct_answer}`
+    btn3.innerText = `${question.answer3}`
+    btn4.innerText = `${question.answer2}`
+
+    for (let i = 0; i > buttons.length; i++) {
+    let randBtn = buttons[Math.floor(Math.random() * buttons.length)];
+    var index = buttons.indexOf(randBtn);
+        if (index > -1) {
+        quizBtns.append(randBtn)    
+        button.splice(index, 1)};
+    } 
+
+    qBox.append(quizBtns)
+
+}
