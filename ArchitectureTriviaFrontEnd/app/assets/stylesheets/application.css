@@ -14,46 +14,33 @@
  *= require_self
  */
 
- 
  body{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-
-}
-
-/* Start Screen */
-
-.start-screen{
+ }
+ /* Start Screen */
+ .start-screen{
     position: absolute;
     top: 250px;
     left: 450px;
     padding: 10px;
     height: 25%;
     background-color: crimson
-
-}
-
-/* High Score */
-
-.score-block {
+ }
+ /* High Score */
+ .score-block {
     position: absolute;
     top: 2%;
     right: 2%;
   }
-
- 
-
-.question-box {
+ .question-box {
     position: center;
     top: 250px;
     left: 450px;
     padding: 10px;
     height: 50%;
-}
-
-
-/* Fixing the Image and its buttons */
-
-.image-box {
+ }
+ /* Fixing the Image and its buttons */
+ .image-box {
     position: relative;
     top: 4rem;
     left: 30rem;
