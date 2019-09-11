@@ -35,6 +35,8 @@ function removeStartBox(e) {
     highScore(e)
 }
 
+//
+
 function highScore(e) {
     // let highScoreBox = document.createAttribute('div')
     // highScoreBox.innerHTML =  "<p class= "score-block" id="leaderboard" HIGHSCORES:>"
@@ -85,6 +87,8 @@ function showQuestion(question) {
     imageBox.append(btn4)
     qBox.append(qBoxDiv)  
 }
+
+//assign button ids and randomize them 
 
 function incorrectAnswer(e) {
 
