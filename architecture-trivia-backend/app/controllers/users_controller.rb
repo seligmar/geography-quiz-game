@@ -5,6 +5,17 @@ class UsersController < ApplicationController
         render json: @users
     end 
 
+    def show 
+        @user = User.find_by(params[:id]) 
+        render json: @user
+    end 
+
+    def update 
+        @user = User.find_by(params[:id]) 
+        @user.update(user_params)
+        render json: @user
+    end 
+
     def new 
         @user = User.new
         render json: @user
