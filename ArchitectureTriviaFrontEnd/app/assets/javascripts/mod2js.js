@@ -8,7 +8,7 @@ const qBox = document.querySelector("#qs-go-here")
 const headerBox = document.querySelector("#header-box")
 
 
-const index = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+const index2 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 userInput.addEventListener("click", e => { userInput.value = ""})
 
@@ -22,13 +22,15 @@ function removeStartBox(e) {
 }
 
 function createUserBar(e) {
-    let newUser = {}
+    newUser = {}
     newUser.name = e.target.children[0].value, 
     newUser.score = 0 
     let headerCont = document.createElement('div')   
     headerCont.classList.add('game-header-box')
     let welcomeH1 = document.createElement('H2')
+    welcomeH1.id = "username_id"
     let scoreH2 = document.createElement('H2')
+    scoreH2.id = "score_id"
     let questionH3 = document.createElement('H3')
     questionH3.innerHTML = "Where is this structure located?"
     welcomeH1.innerHTML = `Welcome, ${newUser.name}! You have: `
@@ -48,11 +50,14 @@ function highScore(e) {
 }
 
 function pickRandom(e) {
-    e.preventDefault
-  if (index.length === 0) {
-      endGame()}
-  let rand = index[Math.floor(Math.random() * index.length)];
-  index.splice(index[rand], 1)
+    e.preventDefault();
+  if (index2.length === 0) {
+      endGame(e)}
+  let rand = index2[Math.floor(Math.random() * index2.length)];
+  var index = index2.indexOf(rand);
+  if (index > -1) {
+     index2.splice(index, 1);
+  }
   fetchRandom(rand)
 }
 
@@ -63,32 +68,33 @@ function fetchRandom(n) {
 }
 
 function showQuestion(question) {
-  // qBox.innerHTML = ""
     let qBoxDiv = document.createElement('div')
     let imageBox = document.createElement('div')
+    qBoxDiv.className = "question-box"
+    imageBox.innerHTML = `<img class = "img-box" src="${question.img}"/>`
+    qBoxDiv.append(imageBox)
+    qBox.append(qBoxDiv)  
+    createButtons(question)
+    window.scrollTo(0,document.body.scrollHeight);
+}
 
+//assign button ids and randomize them 
+
+function createButtons(question) {
+    let quizBtns = document.createElement('div')
+    quizBtns.className = "quiz-button"
     let btn1 = document.createElement('button')
     let btn2 = document.createElement('button')
     let btn3 = document.createElement('button')
     let btn4 = document.createElement('button')
 
-    let quizBtns = document.createElement('div')
-    quizBtns.className = "quiz-button"
-    
-    quizBtns.append(btn1)
-    quizBtns.append(btn2)
-    quizBtns.append(btn3)
-    quizBtns.append(btn4)
-    
-    qBoxDiv.className = "question-box"
-    imageBox.innerHTML = `<img class = "question-box" src="${question.img}"/>`
-    qBoxDiv.append(imageBox)
-    
-    btn1.classList.add('not-correct')
+    let buttons = [btn1, btn2, btn3, btn4] 
+
     btn1.addEventListener('click', e => incorrectAnswer(e, question))
-    btn2.addEventListener('click', e => {patchAPI(e)})
+    btn2.addEventListener('click', e => correctAnswer(e, question))
     btn3.addEventListener('click', e => incorrectAnswer(e, question))
     btn4.addEventListener('click', e => incorrectAnswer(e, question))
+
     btn1.classList.add('not-correct')
     btn2.classList.add('correct')
     btn3.classList.add('not-correct')
@@ -99,15 +105,17 @@ function showQuestion(question) {
     btn3.innerText = `${question.answer3}`
     btn4.innerText = `${question.answer2}`
 
-    quizBtns.append(btn1)
-    quizBtns.append(btn2)
-    quizBtns.append(btn3)
-    quizBtns.append(btn4)
-    imageBox.append(quizBtns)
-    qBox.append(qBoxDiv)  
-}
+  
+    while (buttons.length > 0) {
+    let randBtn = buttons[Math.floor(Math.random() * buttons.length)];
+    var index = buttons.indexOf(randBtn);
+        if (index > -1) {
+        quizBtns.append(randBtn)    
+        buttons.splice(index, 1)};
+    } 
+    qBox.append(quizBtns)
 
-//assign button ids and randomize them 
+}
 
 function incorrectAnswer(e, question) {
     e.preventDefault()
@@ -117,27 +125,21 @@ function incorrectAnswer(e, question) {
     is located in ${question.correct_answer}.`
     // add link to wikipedia page for a "learn more here"?
     qBox.append(responseDiv)
+    window.scrollTo(0,document.body.scrollHeight);
     pickRandom(e)
 }
 
-function patchAPI(e, user) {
-    //then correctAnswer(e)
-}
-
-function correctAnswer(e) {
-    let scoreNum = e.target.parentElement.parentElement.parentElement.parentElement.children[1].childNodes[0].children[1].innerText
-    scoreNum = (parseInt(scoreNum) + 1) + " point(s)"
- }
-
-function endGame(newUser) {
-   let endDiv = document.createElement('div')
-   endDiv.className = "question-box"
-   endDiv.innerHTML = `<p>Congratulations, ${newUser.name}, you earned ${newUser.score}</p>`
-   qBox.append(endDiv)
-   createUser(newUser)
-   //then post to game model 
-   window.onload() 
-}
+function correctAnswer(e, question) {
+    let score_value = document.querySelector("#name_id")
+    score_value.innerText = (parseInt(score_value.innerText) + 1) + " point(s)";
+     let responseDivCorrect = document.createElement('div')
+     responseDivCorrect.classList.add('response-box')
+     responseDivCorrect.innerText = `Thats correct! The ${question.name}
+     is located in ${question.correct_answer}.`
+     // add link to wikipedia page for a "learn more here"?
+     qBox.append(responseDivCorrect)
+     pickRandom(e)
+    }
 
 function createUser(newUser) {
     return fetch("http://localhost:3000/users", {
@@ -147,9 +149,24 @@ function createUser(newUser) {
             accept: "application/json"
         }, 
         body: JSON.stringify(newUser)
-    }).then(resp => resp.json).then(createGame(newUser))
+    }).then(resp => resp.json()).then(createGame(newUser))
 }
 
-function createGame(newUser){
-    console.log(newUser)
+function endGame(e) {
+    let endGameDiv = document.createElement('div')
+    endGameDiv.classList.add("quiz-button")
+    endGameDiv.innerText = `Congratulations, ${newUser.name}, you earned ${newUser.score}!`
+    // create new game button and reload function
+    endGameDiv.append(newGameBtn)
+    qBox.append(endGameDiv)
+    createGame(e)
+    
+}
+
+function startNew() {
+    document.location.reload()
+}
+
+function createGame(e){
+   // return fetch('')
 }

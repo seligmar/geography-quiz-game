@@ -8,6 +8,7 @@
 
 user1 = User.create(name: "Mary")
 
+
 wash_DC = Question.create( img: "file:///Users/flatriron/Documents/GitHub/Project/Mod 3/fewpjs-project-mode-guidelines/architecture-trivia-backend/images/PP_march_4.JPG", name: "U.S. Capitol", correct_answer: "Washington, D.C., USA", answer1: "Berlin, Germany", answer2: "Seattle, WA, USA", answer3: "Dublin, Ireland") 
 florence = Question.create(img: "file:///Users/flatriron/Documents/GitHub/Project/Mod 3/fewpjs-project-mode-guidelines/architecture-trivia-backend/images/Dumo.jpg", name: "Cathedral of Santa Maria del Fiore", correct_answer: "Florence, Italy", answer1: "Buenos Aires, Argentina", answer2: "Havana, Cuba", answer3: "Berlin, Germany")
 berlin = Question.create(img: "file:///Users/flatriron/Documents/GitHub/Project/Mod 3/fewpjs-project-mode-guidelines/architecture-trivia-backend/images/BerlinerDom.jpg", name: "Berliner Dom", correct_answer: "Berlin, Germany", answer1: "Florence, Italy", answer2: "Istanbul, Turkey", answer3: "Johannesburg, South Africa")
