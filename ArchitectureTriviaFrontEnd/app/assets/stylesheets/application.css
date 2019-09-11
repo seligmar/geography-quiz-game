@@ -38,6 +38,7 @@
   }
 
  .question-box {
+    padding: 10px; 
     margin-left: auto;
     margin-right: auto;
     display: block; 

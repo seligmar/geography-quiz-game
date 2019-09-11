@@ -8,7 +8,7 @@ const qBox = document.querySelector("#qs-go-here")
 const headerBox = document.querySelector("#header-box")
 
 
-const index = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+const index2 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 userInput.addEventListener("click", e => { userInput.value = ""})
 
@@ -48,11 +48,14 @@ function highScore(e) {
 }
 
 function pickRandom(e) {
-    e.preventDefault
-  if (index.length === 0) {
-      endGame()}
-  let rand = index[Math.floor(Math.random() * index.length)];
-  index.splice(index[rand], 1)
+    e.preventDefault();
+//   if (index2.length === 0) {
+//       endGame()}
+  let rand = index2[Math.floor(Math.random() * index2.length)];
+  var index = index2.indexOf(rand);
+  if (index > -1) {
+     index2.splice(index, 1);
+  }
   fetchRandom(rand)
 }
 
@@ -63,7 +66,6 @@ function fetchRandom(n) {
 }
 
 function showQuestion(question) {
-  // qBox.innerHTML = ""
     let qBoxDiv = document.createElement('div')
     let imageBox = document.createElement('div')
 
@@ -105,6 +107,7 @@ function showQuestion(question) {
     quizBtns.append(btn4)
     imageBox.append(quizBtns)
     qBox.append(qBoxDiv)  
+    window.scrollTo(0,document.body.scrollHeight);
 }
 
 //assign button ids and randomize them 
@@ -117,6 +120,7 @@ function incorrectAnswer(e, question) {
     is located in ${question.correct_answer}.`
     // add link to wikipedia page for a "learn more here"?
     qBox.append(responseDiv)
+    window.scrollTo(0,document.body.scrollHeight);
     pickRandom(e)
 }
 
