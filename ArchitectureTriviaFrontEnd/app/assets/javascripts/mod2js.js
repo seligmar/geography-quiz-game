@@ -94,10 +94,10 @@ function showQuestion(question) {
     btn3.classList.add('not-correct')
     btn4.classList.add('not-correct')
 
-    btn1.innerText = `${question.answer1}`
+    btn1.innerText = `${question.answers[0]}`
     btn2.innerText = `${question.correct_answer}`
-    btn3.innerText = `${question.answer3}`
-    btn4.innerText = `${question.answer2}`
+    btn3.innerText = `${question.answers[2]}`
+    btn4.innerText = `${question.answers[3]}`
 
     quizBtns.append(btn1)
     quizBtns.append(btn2)
@@ -105,8 +105,20 @@ function showQuestion(question) {
     quizBtns.append(btn4)
     imageBox.append(quizBtns)
     qBox.append(qBoxDiv)  
+
+    //shuffle buttons leading to function
+    let i = quizBtns.count, j, temp;
+    while( --i > 0) {
+        j = Math.floor(Math.random() * (i+1))
+        temp = quizBtns[j]
+        quizBtns[j] = quizBtns[i]
+        quizBtns[i] = temp
+    }
+    return quizBtns
 }
 
+//shuffle buttons functions
+   
 //assign button ids and randomize them 
 
 function incorrectAnswer(e, question) {
