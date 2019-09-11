@@ -44,21 +44,26 @@ function showQuestion(question) {
    qBox.innerHTML = ""
     let qBoxDiv = document.createElement('div')
     let imageBox = document.createElement('div')
+
     let btn1 = document.createElement('button')
     let btn2 = document.createElement('button')
     let btn3 = document.createElement('button')
     let btn4 = document.createElement('button')
+    
     qBoxDiv.className = "question-box"
     imageBox.innerHTML = `<img class = "question-box" src="${question.img}"/>`
     qBoxDiv.append(imageBox)
+    
     btn1.classList.add('not-correct')
     btn2.classList.add('correct')
     btn3.classList.add('not-correct')
     btn4.classList.add('not-correct')
+
     btn1.innerText = `${question.answer1}`
     btn2.innerText = `${question.correct_answer}`
     btn3.innerText = `${question.answer3}`
     btn4.innerText = `${question.answer2}`
+
     imageBox.append(btn1)
     imageBox.append(btn2)
     imageBox.append(btn3)

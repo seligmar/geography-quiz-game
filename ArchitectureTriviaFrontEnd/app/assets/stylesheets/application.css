@@ -72,7 +72,6 @@
     border: 3px solid #3777BC;
     margin: 20px;
     position: relative;
-<<<<<<< HEAD
     color: #3777BC;
     letter-spacing: 1px;
     top: 8rem;
@@ -83,40 +82,3 @@
 .quiz-button :hover{
     color: #3777BC;
 }
-=======
-    margin: 5px;
-    top: 600px;
-    left: 23rem;
-    font-size: 20px;
-
-}    
-
-.game-header-box {
-display: flex;
-justify-content: center;
-background:  crimson;
-opacity: .8;
-height: 5rem;
-padding: 1rem;
-}
-
-.quiz-button {
-    position: relative;
-    margin: 5px;
-    top: 600px;
-    left: 23rem;
-    font-size: 20px; 
-}
-
-.image-box {
-    display: flex;
-    position: absolute;
-    top: 150px;
-    left: 350px;
-    padding: 10px;
-    height: 60%;
-    width: 50%;
-
-}
-
->>>>>>> d1174978592f150e017d44420f958722b297c00b
