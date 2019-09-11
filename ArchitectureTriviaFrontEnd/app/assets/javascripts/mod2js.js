@@ -3,6 +3,7 @@ const usernameForm = document.querySelector("#usernameForm")
 const startBtn = document.querySelector("#button")
 const ol = document.createElement('ol')
 const userInput = document.querySelector("#username")
+const bottomOfPage = document.querySelector("#botton-of-page")
 
 const qBox = document.querySelector("#qs-go-here")
 const headerBox = document.querySelector("#header-box")
@@ -49,20 +50,37 @@ function highScore(e) {
     // headerBox.append(highScoreBox)
 }
 
+function createGameinApi(e) {
+    debugger
+    return fetch("http://localhost:3000/games", {
+        method: "POST", 
+        headers: {
+            "content-type": "application/json", 
+            accept: "application/json"
+        }, 
+        body: JSON.stringify({
+            user: newUser.name, 
+            score: newUser.score
+        })
+    }).then(resp => resp.json())
+}
+
 function pickRandom(e) {
     e.preventDefault();
   if (index2.length === 0) {
-      endGame(e)}
+      endGame(e)}  
+  else {
   let rand = index2[Math.floor(Math.random() * index2.length)];
   var index = index2.indexOf(rand);
   if (index > -1) {
      index2.splice(index, 1);
   }
-  fetchRandom(rand)
+  fetchRandom(rand) }
 }
 
 function fetchRandom(n) {
   return fetch(`http://localhost:3000/questions/${n}`)
+  .catch()
   .then(resp => resp.json())
   .then(showQuestion)
 }
@@ -75,7 +93,6 @@ function showQuestion(question) {
     qBoxDiv.append(imageBox)
     qBox.append(qBoxDiv)  
     createButtons(question)
-    window.scrollTo(0,document.body.scrollHeight);
 }
 
 //assign button ids and randomize them 
@@ -105,7 +122,6 @@ function createButtons(question) {
     btn3.innerText = `${question.answer3}`
     btn4.innerText = `${question.answer2}`
 
-  
     while (buttons.length > 0) {
     let randBtn = buttons[Math.floor(Math.random() * buttons.length)];
     var index = buttons.indexOf(randBtn);
@@ -114,7 +130,7 @@ function createButtons(question) {
         buttons.splice(index, 1)};
     } 
     qBox.append(quizBtns)
-
+    
 }
 
 function incorrectAnswer(e, question) {
@@ -125,13 +141,12 @@ function incorrectAnswer(e, question) {
     is located in ${question.correct_answer}.`
     // add link to wikipedia page for a "learn more here"?
     qBox.append(responseDiv)
-    window.scrollTo(0,document.body.scrollHeight);
     pickRandom(e)
 }
 
 function correctAnswer(e, question) {
-    let score_value = document.querySelector("#name_id")
-    score_value.innerText = (parseInt(score_value.innerText) + 1) + " point(s)";
+    // let score_value = document.querySelector("#name_id")
+    // score_value.innerText = (parseInt(score_value.innerText) + 1) + " point(s)";
      let responseDivCorrect = document.createElement('div')
      responseDivCorrect.classList.add('response-box')
      responseDivCorrect.innerText = `Thats correct! The ${question.name}
@@ -149,24 +164,24 @@ function createUser(newUser) {
             accept: "application/json"
         }, 
         body: JSON.stringify(newUser)
-    }).then(resp => resp.json()).then(createGame(newUser))
-}
+    }).then(resp => resp.json())}
 
 function endGame(e) {
+    e.preventDefault()
     let endGameDiv = document.createElement('div')
     endGameDiv.classList.add("quiz-button")
     endGameDiv.innerText = `Congratulations, ${newUser.name}, you earned ${newUser.score}!`
-    // create new game button and reload function
+    let newGameBtn = document.createElement('button')
+    newGameBtn.innerText = "Start a new quiz"
+    newGameBtn.addEventListener('click', startNew)
     endGameDiv.append(newGameBtn)
     qBox.append(endGameDiv)
-    createGame(e)
-    
+    //    createGameInApi(e)
 }
 
 function startNew() {
     document.location.reload()
 }
 
-function createGame(e){
-   // return fetch('')
-}
+
+
