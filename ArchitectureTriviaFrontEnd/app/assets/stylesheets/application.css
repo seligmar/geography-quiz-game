@@ -68,3 +68,43 @@
  padding: 25px; 
 
  }
+
+.quiz-button{
+     /* Green */
+    border: none;
+    
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-left: 300px;
+  }
+
+
+.not-correct{
+   margin: 2rem;
+   padding: 1rem;
+
+    background-color: cornflowerblue;
+    color: white;
+    
+}
+
+.correct{
+   margin: 2rem;
+   padding: 1rem;
+
+    background-color: cornflowerblue ;
+    color: white;
+}
+
+.not-correct:hover{
+    background-color: aqua;
+    
+}
+
+.correct:hover{
+    background-color: aqua;
+    
+}

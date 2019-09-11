@@ -117,10 +117,10 @@ function createButtons(question) {
     btn3.classList.add('not-correct')
     btn4.classList.add('not-correct')
 
-    btn1.innerText = `${question.answer1}`
+    btn1.innerText = `${question.answers[0]}`
     btn2.innerText = `${question.correct_answer}`
-    btn3.innerText = `${question.answer3}`
-    btn4.innerText = `${question.answer2}`
+    btn3.innerText = `${question.answers[2]}`
+    btn4.innerText = `${question.answers[3]}`
 
     while (buttons.length > 0) {
     let randBtn = buttons[Math.floor(Math.random() * buttons.length)];
