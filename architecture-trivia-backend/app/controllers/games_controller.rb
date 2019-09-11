@@ -11,10 +11,15 @@ class GamesController < ApplicationController
         render json: @game
     end 
 
+    def update 
+        @game = Game.update(game_params)
+        render json: @game
+    end 
+
     private 
 
-    def user_params
-        params.require(:game).permit(:user, :score)
+    def game_params
+        params.require(:game).permit(:user_id, :score)
     end 
 end 
 
