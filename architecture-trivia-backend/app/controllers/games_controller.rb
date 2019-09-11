@@ -1,4 +1,4 @@
-class QuestionsController < ApplicationController
+class GamesController < ApplicationController
 
     def index 
         @games = Game.all 
@@ -17,3 +17,4 @@ class QuestionsController < ApplicationController
         params.require(:game).permit(:user, :score)
     end 
 end 
+
