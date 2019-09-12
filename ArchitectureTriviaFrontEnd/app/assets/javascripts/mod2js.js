@@ -4,7 +4,7 @@ const ol = document.createElement('ol')
 const userInput = document.querySelector("#username")
 const bottomOfPage = document.querySelector("#botton-of-page")
 
-const qBox = document.querySelector("#qs-go-here")
+const qBox = document.querySelector("#botton-of-page")
 const headerBox = document.querySelector("#header-box")
 
 
@@ -33,11 +33,11 @@ function createUserBar(e) {
     newUser.score = 0 
     let headerCont = document.createElement('div')   
     headerCont.classList.add('game-header-box')
-    let welcomeH1 = document.createElement('H2')
+    let welcomeH1 = document.createElement('div')
     welcomeH1.id = "username_id"
-    let scoreH2 = document.createElement('H2')
+    let scoreH2 = document.createElement('div')
     scoreH2.id = "score_id"
-    let questionH3 = document.createElement('H3')
+    let questionH3 = document.createElement('div')
     questionH3.innerHTML = "Where is this structure located?"
     welcomeH1.innerHTML = `Welcome, ${newUser.name}! You have: `
     scoreH2.innerHTML = `${newUser.score} points`
@@ -82,7 +82,7 @@ function showQuestion(game, question) {
     qBoxDiv.className = "question-box"
     imageBox.innerHTML = `<img class = "img-box" src="${question.img}"/>`
     qBoxDiv.append(imageBox)
-    qBox.append(qBoxDiv)  
+    qBox.prepend(qBoxDiv)  
     createButtons(game, question)
 }
 
@@ -120,7 +120,7 @@ function createButtons(game, question) {
         quizBtns.append(randBtn)    
         buttons.splice(index, 1)};
     } 
-    qBox.append(quizBtns)
+    qBox.prepend(quizBtns)
     
 }
 
@@ -131,19 +131,19 @@ function incorrectAnswer(e, game, question) {
     responseDiv.innerText = `Sorry, that is not correct. The ${question.name}
     is located in ${question.correct_answer}.`
     // add link to wikipedia page for a "learn more here"?
-    qBox.append(responseDiv)
+    qBox.prepend(responseDiv)
     pickRandom(game)
 }
 
 function correctAnswer(e, game, question) {
-    // let score_value = document.querySelector("#name_id")
-    // score_value.innerText = (parseInt(score_value.innerText) + 1) + " point(s)";
+    e.target.parentElement.parentElement.parentElement.children[2].children[0].children[1].innerText = 
+    (parseInt(e.target.parentElement.parentElement.parentElement.children[2].children[0].children[1].innerText) +1) + " points";
      let responseDivCorrect = document.createElement('div')
      responseDivCorrect.classList.add('response-box')
      responseDivCorrect.innerText = `Thats correct! The ${question.name}
      is located in ${question.correct_answer}.`
      // add link to wikipedia page for a "learn more here"?
-     qBox.append(responseDivCorrect)
+     qBox.prepend(responseDivCorrect)
     }
 
 function createUser(newUser) {
@@ -194,6 +194,7 @@ function updateScore(e, game) {
 function endQuiz(game) {
    // e.preventDefault()
     let endGameDiv = document.createElement('div')
+
     endGameDiv.innerHTML = `<div class = "game-header-box">Congratulations, ${newUser.name}, you earned ${newUser.score}! <br>
                             <button type = "button" class = "view-high-score"> View High Scores </button> </div>`
     // let highScore = document.createElement("div")
@@ -204,6 +205,14 @@ function endQuiz(game) {
     newGameBtn.addEventListener('click', startNew)
     endGameDiv.append(newGameBtn)
     qBox.append(endGameDiv)
+
+    endGameDiv.innerHTML = `<div class = "game-header-box">Thanks for playing, ${newUser.name}! Click <a href ="file:///Users/maryselig/Documents/fewpjs-project-mode-guidelines/ArchitectureTriviaFrontEnd/home.html">here </a>to play again!</div>`
+    // let newGameBtn = document.createElement('button')
+    // newGameBtn.innerText = "Start a new quiz"
+    // newGameBtn.addEventListener('click', startNew)
+    // endGameDiv.append(newGameBtn)
+    qBox.prepend(endGameDiv)
+
     //    createGameInApi(e)
 
     //Show High Score 
