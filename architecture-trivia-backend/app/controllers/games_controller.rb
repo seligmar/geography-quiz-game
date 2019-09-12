@@ -17,10 +17,19 @@ class GamesController < ApplicationController
         render json: @game
     end 
 
+    def leaderboard
+        leaderboard = Game.leaderboard
+        render json: leaderboard
+    end
+
+    def edit
+    end 
+
     def update 
-        @game = Game.find_by(params[:id])
-        @game = Game.update(game_params)
-        render json: @game
+        game = Game.find_by(id: params[:id])
+        # byebug
+        game.update(game_params)
+        render json: game
     end 
 
     private 

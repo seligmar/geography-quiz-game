@@ -9,8 +9,11 @@ Rails.application.routes.draw do
   post "/users", to: "users#create"
 
   get "/games", to: "games#index"
+  get '/games/leaderboard', to: 'games#leaderboard'
   get "/games/:id", to: "games#show"
+  get "/games/:id/edit", to: "games#edit"
   post "/games", to: "games#create"
   patch "/games/:id", to: "games#update"
-  
+
+
 end
