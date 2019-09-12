@@ -6,7 +6,7 @@ class GamesController < ApplicationController
     end 
 
     def show 
-        @game = Game.find_by(params[:id])
+        @game = Game.find(params[:id])
         render json: @game
     end 
 
@@ -26,10 +26,12 @@ class GamesController < ApplicationController
     end 
 
     def update 
+
         game = Game.find_by(id: params[:id])
         # byebug
         game.update(game_params)
         render json: game
+
     end 
 
     private 
