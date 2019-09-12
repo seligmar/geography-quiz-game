@@ -6,6 +6,7 @@ const bottomOfPage = document.querySelector("#botton-of-page")
 
 const qBox = document.querySelector("#botton-of-page")
 const headerBox = document.querySelector("#header-box")
+const pageBody = document.querySelector('body')
 
 
 
@@ -80,13 +81,40 @@ function showQuestion(game, question) {
     let qBoxDiv = document.createElement('div')
     let imageBox = document.createElement('div')
     qBoxDiv.className = "question-box"
-    imageBox.innerHTML = `<img class = "img-box" src="${question.img}"/>`
+
+    imageBox.innerHTML = `<img id =${question.name} 
+    class= "img-box" src="${question.img}"/>`
+
+    let modalDiv = document.createElement('div')
+    modalDiv.id = `myModal${question.name}` 
+    modalDiv.className = "modal"
+    let modalSpan = document.createElement('span')
+    modalSpan.innerText = "X"
+    modalSpan.className = "close"
+
+    modalSpan.addEventListener('click', e => {
+        imageBox.innerHTML= `<img id =${question.name} 
+        class= "img-box" src="${question.img}"/>`
+    }) 
+
+    let innerImg = document.createElement('img')
+    innerImg.className = "modal-content" 
+    innerImg.id = `img${question.name}` 
+
+    modalDiv.append(modalSpan)
+    modalDiv.append(innerImg)
+    imageBox.append(modalDiv)
+   
+    imageBox.addEventListener('click', e => {
+        modalDiv.style.display = "block";
+        innerImg.src = `${question.img}`;
+      })
+    
     qBoxDiv.append(imageBox)
     qBox.prepend(qBoxDiv)  
     createButtons(game, question)
 }
 
-//assign button ids and randomize them 
 
 function createButtons(game, question) {
     let quizBtns = document.createElement('div')
