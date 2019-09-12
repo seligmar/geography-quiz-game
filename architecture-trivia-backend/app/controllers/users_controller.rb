@@ -27,6 +27,12 @@ class UsersController < ApplicationController
         render json: @user
     end 
 
+    def leaderboard
+        leaderboard = User.leaderboard
+
+        render json: leaderboard
+    end
+
     private 
 
     def user_params

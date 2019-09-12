@@ -206,25 +206,24 @@ function createGameinApi(newUserInAPI) {
 }
 
 function updateScore(e, game) {
+    ++game.score
+    // debugger
     return fetch(`http://localhost:3000/games/${game.id}`, {
         method: "PATCH", 
         headers: {
             "content-type": "application/json", 
             accept: "application/json"
         }, 
-        body: JSON.stringify({
-            score: game.score += 1
-        })
+        body: JSON.stringify({game})
     }).then(resp => resp.json())
-    .then(pickRandom(game))
+    .then(pickRandom(game)).then(console.log(game))
 }
 
 function endQuiz(game) {
    // e.preventDefault()
     let endGameDiv = document.createElement('div')
 
-    endGameDiv.innerHTML = `<div class = "game-header-box">Congratulations, ${newUser.name}, you earned ${newUser.score}! <br>
-                            <button type = "button" class = "view-high-score"> View High Scores </button> </div>`
+    endGameDiv.innerHTML = `<div class = "game-header-box">Congratulations, ${newUser.name}, you earned ${newUser.score}!`
     // let highScore = document.createElement("div")
     // highScore.className = ("high-score")
     
@@ -234,7 +233,8 @@ function endQuiz(game) {
     endGameDiv.append(newGameBtn)
     qBox.append(endGameDiv)
 
-    endGameDiv.innerHTML = `<div class = "game-header-box">Thanks for playing, ${newUser.name}! Click <a href ="file:///Users/maryselig/Documents/fewpjs-project-mode-guidelines/ArchitectureTriviaFrontEnd/home.html">here </a>to play again!</div>`
+    endGameDiv.innerHTML = `<div class = "game-header-box">Thanks for playing, ${newUser.name}! Click <a href ="file:///Users/maryselig/Documents/fewpjs-project-mode-guidelines/ArchitectureTriviaFrontEnd/home.html">here </a>to play again! <br> 
+                            <button type = "button" class = "view-high-score"> View High Scores </button> </div>`
     // let newGameBtn = document.createElement('button')
     // newGameBtn.innerText = "Start a new quiz"
     // newGameBtn.addEventListener('click', startNew)
@@ -245,9 +245,43 @@ function endQuiz(game) {
 
     //Show High Score 
     let viewHighScore = document.querySelector(".view-high-score")
+    viewHighScore.addEventListener('click', e => showHighScore(e))
 
-
+    const showHighScore = (e) => {
+        
+        return fetch('http://localhost:3000/games/leaderboard')
+        .then(resp => resp.json())
+        .then(resp => renderScore(resp))
+    }
+    
+    const renderScore = highscores => {
+        let ul = document.createElement('ul')
+            ul.className = "game-header-box"
+        
+           
+        
+        highscores.forEach(highscore => {
+            let li = document.createElement('li')
+            li.innerHTML = `<h4> Name: ${highscore.user}: ${highscore.score} </h4>`
+            ul.append(li)
+           qBox.prepend(ul)
+            
+        })
+        
+        // games.append('li')
+        // li.append(endGameDiv)
+    
+        
+    }
+    
 }
+   
+
+// Practice
+    // Render the page
+
+// End Practice
+    
 
 function startNew() {
     document.location.reload()
