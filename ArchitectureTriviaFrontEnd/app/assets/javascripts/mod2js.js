@@ -8,6 +8,8 @@ const qBox = document.querySelector("#qs-go-here")
 const headerBox = document.querySelector("#header-box")
 
 
+
+
 const index2 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 const currentUser = {}  
@@ -22,7 +24,7 @@ function removeStartBox(e) {
     document.querySelector(".start-screen").style.display = "none"; 
     document.querySelector("#image-credit-bar").style.display = "none";
     createUserBar(e)
-    highScore(e)
+    // highScore(e)
 }
 
 function createUserBar(e) {
@@ -46,12 +48,13 @@ function createUserBar(e) {
     createUser(newUser)
 }
 
-function highScore(e) {
-    // let highScoreBox = document.createAttribute('div')
-    // highScoreBox.innerHTML =  "<p class= "score-block" id="leaderboard" HIGHSCORES:>"
-    // ///this needs to call the high scores
-    // headerBox.append(highScoreBox)
-}
+// function highScore(e) {
+//     // let highScoreBox = document.createAttribute('div')
+//     // highScoreBox.innerHTML =  "<p class= "score-block" id="leaderboard" HIGHSCORES:>"
+//     // ///this needs to call the high scores
+//     // headerBox.append(highScoreBox)
+
+// }
 
 function pickRandom(game) {
    // e.preventDefault();
@@ -95,10 +98,10 @@ function createButtons(game, question) {
 
     let buttons = [btn1, btn2, btn3, btn4] 
 
-    btn1.addEventListener('click', e => incorrectAnswer(e, question))
+    btn1.addEventListener('click', e => incorrectAnswer(e, game, question))
     btn2.addEventListener('click', e => {correctAnswer(e, game, question), updateScore(e, game)})
-    btn3.addEventListener('click', e => incorrectAnswer(e, question))
-    btn4.addEventListener('click', e => incorrectAnswer(e, question))
+    btn3.addEventListener('click', e => incorrectAnswer(e, game, question))
+    btn4.addEventListener('click', e => incorrectAnswer(e, game, question))
 
     btn1.classList.add('question-buttons')
     btn2.classList.add('question-buttons')
@@ -191,13 +194,22 @@ function updateScore(e, game) {
 function endQuiz(game) {
    // e.preventDefault()
     let endGameDiv = document.createElement('div')
-    endGameDiv.innerHTML = `<div class = "game-header-box">Congratulations, ${newUser.name}, you earned ${newUser.score}!</div>`
+    endGameDiv.innerHTML = `<div class = "game-header-box">Congratulations, ${newUser.name}, you earned ${newUser.score}! <br>
+                            <button type = "button" class = "view-high-score"> View High Scores </button> </div>`
+    // let highScore = document.createElement("div")
+    // highScore.className = ("high-score")
+    
     let newGameBtn = document.createElement('button')
     newGameBtn.innerText = "Start a new quiz"
     newGameBtn.addEventListener('click', startNew)
     endGameDiv.append(newGameBtn)
     qBox.append(endGameDiv)
     //    createGameInApi(e)
+
+    //Show High Score 
+    let viewHighScore = document.querySelector(".view-high-score")
+
+
 }
 
 function startNew() {
