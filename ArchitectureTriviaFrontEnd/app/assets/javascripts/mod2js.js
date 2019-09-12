@@ -4,7 +4,7 @@ const ol = document.createElement('ol')
 const userInput = document.querySelector("#username")
 const bottomOfPage = document.querySelector("#botton-of-page")
 
-const qBox = document.querySelector("#qs-go-here")
+const qBox = document.querySelector("#botton-of-page")
 const headerBox = document.querySelector("#header-box")
 
 
@@ -79,7 +79,7 @@ function showQuestion(game, question) {
     qBoxDiv.className = "question-box"
     imageBox.innerHTML = `<img class = "img-box" src="${question.img}"/>`
     qBoxDiv.append(imageBox)
-    qBox.append(qBoxDiv)  
+    qBox.prepend(qBoxDiv)  
     createButtons(game, question)
 }
 
@@ -95,10 +95,10 @@ function createButtons(game, question) {
 
     let buttons = [btn1, btn2, btn3, btn4] 
 
-    btn1.addEventListener('click', e => incorrectAnswer(e, question))
+    btn1.addEventListener('click', e => incorrectAnswer(e, game, question))
     btn2.addEventListener('click', e => {correctAnswer(e, game, question), updateScore(e, game)})
-    btn3.addEventListener('click', e => incorrectAnswer(e, question))
-    btn4.addEventListener('click', e => incorrectAnswer(e, question))
+    btn3.addEventListener('click', e => incorrectAnswer(e, game, question))
+    btn4.addEventListener('click', e => incorrectAnswer(e, game, question))
 
     btn1.classList.add('question-buttons')
     btn2.classList.add('question-buttons')
@@ -117,7 +117,7 @@ function createButtons(game, question) {
         quizBtns.append(randBtn)    
         buttons.splice(index, 1)};
     } 
-    qBox.append(quizBtns)
+    qBox.prepend(quizBtns)
     
 }
 
@@ -128,7 +128,7 @@ function incorrectAnswer(e, game, question) {
     responseDiv.innerText = `Sorry, that is not correct. The ${question.name}
     is located in ${question.correct_answer}.`
     // add link to wikipedia page for a "learn more here"?
-    qBox.append(responseDiv)
+    qBox.prepend(responseDiv)
     pickRandom(game)
 }
 
@@ -140,7 +140,7 @@ function correctAnswer(e, game, question) {
      responseDivCorrect.innerText = `Thats correct! The ${question.name}
      is located in ${question.correct_answer}.`
      // add link to wikipedia page for a "learn more here"?
-     qBox.append(responseDivCorrect)
+     qBox.prepend(responseDivCorrect)
     }
 
 function createUser(newUser) {
@@ -196,7 +196,7 @@ function endQuiz(game) {
     newGameBtn.innerText = "Start a new quiz"
     newGameBtn.addEventListener('click', startNew)
     endGameDiv.append(newGameBtn)
-    qBox.append(endGameDiv)
+    qBox.prepend(endGameDiv)
     //    createGameInApi(e)
 }
 
