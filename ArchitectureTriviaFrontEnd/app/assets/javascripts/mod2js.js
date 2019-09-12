@@ -31,11 +31,11 @@ function createUserBar(e) {
     newUser.score = 0 
     let headerCont = document.createElement('div')   
     headerCont.classList.add('game-header-box')
-    let welcomeH1 = document.createElement('H2')
+    let welcomeH1 = document.createElement('div')
     welcomeH1.id = "username_id"
-    let scoreH2 = document.createElement('H2')
+    let scoreH2 = document.createElement('div')
     scoreH2.id = "score_id"
-    let questionH3 = document.createElement('H3')
+    let questionH3 = document.createElement('div')
     questionH3.innerHTML = "Where is this structure located?"
     welcomeH1.innerHTML = `Welcome, ${newUser.name}! You have: `
     scoreH2.innerHTML = `${newUser.score} points`
