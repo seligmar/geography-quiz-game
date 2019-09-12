@@ -30,6 +30,11 @@
     height: 25%;
    
  }
+
+ #start-image {
+    height: 7%;
+    width: 100%;
+}
  /* High Score */
  .score-block {
     position: absolute;
@@ -56,13 +61,15 @@
  }
  
  .game-header-box {
-    top: 250px;
+    top: 200px;
     left: 450px;
     text-align: center;
     padding: 10px;
     height: 25%;
     background-color: crimson;
  }
+
+
  
  .response-box {
  text-align: center;

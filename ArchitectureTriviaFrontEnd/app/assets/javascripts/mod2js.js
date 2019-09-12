@@ -18,7 +18,9 @@ usernameForm.addEventListener("submit", e => removeStartBox(e))
 
 function removeStartBox(e) {
     e.preventDefault()
+    document.querySelector("#start-image").style.display = "none";
     document.querySelector(".start-screen").style.display = "none"; 
+    document.querySelector("#image-credit-bar").style.display = "none";
     createUserBar(e)
     highScore(e)
 }
