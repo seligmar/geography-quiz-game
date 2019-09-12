@@ -1,0 +1,52 @@
+Need to add event listener to image 
+pass in question? so ids are unique 
+no captions 
+create span 
+   
+function createModal(question) {
+    let modalImg = document.createElement('img')
+    modalImg.id = `${question.name}`
+    modalImg.src= "`${question.img}`" 
+    modalImg.style = "width:100%;max-width:300px"
+
+    let modalDiv = document.createElement('div')
+    modalDiv.id = `myModal${question.name}` 
+    modalDiv.className = "modal"
+    let modalSpan = document.createElement('span')
+    modalSpan.innerText = "X"
+    modalSpan.innerHTML = `<img class = "modal-content" id = img${queston.name}>`
+    modalSpan.className = "close"
+    modalDiv.append('modalSpan')
+    modalImg.append('modalDiv')
+
+    let modalSpan = document.querySelector(`img${queston.name}`)
+
+var  modalImg= document.getElementById(`myModal${question.name}`);  
+    
+    modalImg.onclick = function(){
+    modal.style.display = "block";
+    modalImg.src = this.src;
+}
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+}
+
+
+
+
+#"U.S. Capitol" 
+#"Cathedral of Santa Maria del Fiore"
+#"Berliner Dom"
+#"Great Mosque"
+#"Flatiron Building", correct_answer: "New York City, NY, USA", answer1: "Washington, D.C., USA", answer2: "Agra, India", answer3: "Johannesburg, South Africa")
+#"Svaneti Towers"
+#"Taj Mahal", correct_answer: "Agra, India", answer1: "Kolkata, India", answer2: "Havana, Cuba", answer3: "Angkor Wat, Cambodia")
+#"Hagia Sophia"
+#"ruins of Machu Picchu"
+#"Millennium Centre"
