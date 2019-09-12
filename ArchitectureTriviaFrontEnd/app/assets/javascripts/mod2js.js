@@ -8,6 +8,8 @@ const qBox = document.querySelector("#botton-of-page")
 const headerBox = document.querySelector("#header-box")
 
 
+
+
 const index2 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 const currentUser = {}  
@@ -22,7 +24,7 @@ function removeStartBox(e) {
     document.querySelector(".start-screen").style.display = "none"; 
     document.querySelector("#image-credit-bar").style.display = "none";
     createUserBar(e)
-    highScore(e)
+    // highScore(e)
 }
 
 function createUserBar(e) {
@@ -46,12 +48,13 @@ function createUserBar(e) {
     createUser(newUser)
 }
 
-function highScore(e) {
-    // let highScoreBox = document.createAttribute('div')
-    // highScoreBox.innerHTML =  "<p class= "score-block" id="leaderboard" HIGHSCORES:>"
-    // ///this needs to call the high scores
-    // headerBox.append(highScoreBox)
-}
+// function highScore(e) {
+//     // let highScoreBox = document.createAttribute('div')
+//     // highScoreBox.innerHTML =  "<p class= "score-block" id="leaderboard" HIGHSCORES:>"
+//     // ///this needs to call the high scores
+//     // headerBox.append(highScoreBox)
+
+// }
 
 function pickRandom(game) {
    // e.preventDefault();
@@ -191,13 +194,31 @@ function updateScore(e, game) {
 function endQuiz(game) {
    // e.preventDefault()
     let endGameDiv = document.createElement('div')
+
+    endGameDiv.innerHTML = `<div class = "game-header-box">Congratulations, ${newUser.name}, you earned ${newUser.score}! <br>
+                            <button type = "button" class = "view-high-score"> View High Scores </button> </div>`
+    // let highScore = document.createElement("div")
+    // highScore.className = ("high-score")
+    
+    let newGameBtn = document.createElement('button')
+    newGameBtn.innerText = "Start a new quiz"
+    newGameBtn.addEventListener('click', startNew)
+    endGameDiv.append(newGameBtn)
+    qBox.append(endGameDiv)
+
     endGameDiv.innerHTML = `<div class = "game-header-box">Thanks for playing, ${newUser.name}! Click <a href ="file:///Users/maryselig/Documents/fewpjs-project-mode-guidelines/ArchitectureTriviaFrontEnd/home.html">here </a>to play again!</div>`
     // let newGameBtn = document.createElement('button')
     // newGameBtn.innerText = "Start a new quiz"
     // newGameBtn.addEventListener('click', startNew)
     // endGameDiv.append(newGameBtn)
     qBox.prepend(endGameDiv)
+
     //    createGameInApi(e)
+
+    //Show High Score 
+    let viewHighScore = document.querySelector(".view-high-score")
+
+
 }
 
 function startNew() {
