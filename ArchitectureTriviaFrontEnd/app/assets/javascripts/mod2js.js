@@ -133,8 +133,8 @@ function incorrectAnswer(e, game, question) {
 }
 
 function correctAnswer(e, game, question) {
-    // let score_value = document.querySelector("#name_id")
-    // score_value.innerText = (parseInt(score_value.innerText) + 1) + " point(s)";
+    e.target.parentElement.parentElement.parentElement.children[2].children[0].children[1].innerText = 
+    (parseInt(e.target.parentElement.parentElement.parentElement.children[2].children[0].children[1].innerText) +1) + " points";
      let responseDivCorrect = document.createElement('div')
      responseDivCorrect.classList.add('response-box')
      responseDivCorrect.innerText = `Thats correct! The ${question.name}
@@ -191,11 +191,11 @@ function updateScore(e, game) {
 function endQuiz(game) {
    // e.preventDefault()
     let endGameDiv = document.createElement('div')
-    endGameDiv.innerHTML = `<div class = "game-header-box">Congratulations, ${newUser.name}, you earned ${newUser.score}!</div>`
-    let newGameBtn = document.createElement('button')
-    newGameBtn.innerText = "Start a new quiz"
-    newGameBtn.addEventListener('click', startNew)
-    endGameDiv.append(newGameBtn)
+    endGameDiv.innerHTML = `<div class = "game-header-box">Thanks for playing, ${newUser.name}! Click <a href ="file:///Users/maryselig/Documents/fewpjs-project-mode-guidelines/ArchitectureTriviaFrontEnd/home.html">here </a>to play again!</div>`
+    // let newGameBtn = document.createElement('button')
+    // newGameBtn.innerText = "Start a new quiz"
+    // newGameBtn.addEventListener('click', startNew)
+    // endGameDiv.append(newGameBtn)
     qBox.prepend(endGameDiv)
     //    createGameInApi(e)
 }
