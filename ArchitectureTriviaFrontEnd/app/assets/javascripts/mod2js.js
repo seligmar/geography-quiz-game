@@ -241,7 +241,7 @@ const showHighScore = (e) => {
         
         highscores.forEach(highscore => {
             let li = document.createElement('li')
-            li.innerHTML = `<h4>  ${highscore.user}: ${highscore.score} </h4>`
+            li.innerHTML = `<div class= "highscore-view">  ${highscore.user}: ${highscore.score} </div>`
             ul.append(li)
            qBox.prepend(ul)
             
