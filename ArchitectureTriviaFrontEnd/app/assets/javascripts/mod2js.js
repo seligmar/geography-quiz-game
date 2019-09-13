@@ -13,7 +13,6 @@ const pageBody = document.querySelector('body')
 
 const index2 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-const currentUser = {}  
 
 userInput.addEventListener("click", e => { userInput.value = ""})
 
@@ -25,7 +24,6 @@ function removeStartBox(e) {
     document.querySelector(".start-screen").style.display = "none"; 
     document.querySelector("#image-credit-bar").style.display = "none";
     createUserBar(e)
-    // highScore(e)
 }
 
 function createUserBar(e) {
@@ -49,16 +47,7 @@ function createUserBar(e) {
     createUser(newUser)
 }
 
-// function highScore(e) {
-//     // let highScoreBox = document.createAttribute('div')
-//     // highScoreBox.innerHTML =  "<p class= "score-block" id="leaderboard" HIGHSCORES:>"
-//     // ///this needs to call the high scores
-//     // headerBox.append(highScoreBox)
-
-// }
-
 function pickRandom(game) {
-   // e.preventDefault();
   if (index2.length === 0) {
       endQuiz(game)}  
   else {
@@ -72,7 +61,6 @@ function pickRandom(game) {
 
 function fetchRandom(game, n) {
   return fetch(`http://localhost:3000/questions/${n}`)
-  .catch()
   .then(resp => resp.json())
   .then(resp => showQuestion(game, resp))
 }
@@ -158,7 +146,6 @@ function incorrectAnswer(e, game, question) {
     responseDiv.classList.add('response-box')
     responseDiv.innerText = `Sorry, that is not correct. The ${question.name}
     is located in ${question.correct_answer}.`
-    // add link to wikipedia page for a "learn more here"?
     qBox.prepend(responseDiv)
     pickRandom(game)
 }
@@ -170,7 +157,6 @@ function correctAnswer(e, game, question) {
      responseDivCorrect.classList.add('response-box')
      responseDivCorrect.innerText = `Thats correct! The ${question.name}
      is located in ${question.correct_answer}.`
-     // add link to wikipedia page for a "learn more here"?
      qBox.prepend(responseDivCorrect)
     }
 
@@ -185,7 +171,6 @@ function createUser(newUser) {
     })
     .then(resp => resp.json())
     .then(resp => createGameinApi(resp))
-   // .then(resp => updateScore(resp))
 } 
 
 
@@ -207,7 +192,6 @@ function createGameinApi(newUserInAPI) {
 
 function updateScore(e, game) {
     ++game.score
-    // debugger
     return fetch(`http://localhost:3000/games/${game.id}`, {
         method: "PATCH", 
         headers: {
@@ -216,16 +200,14 @@ function updateScore(e, game) {
         }, 
         body: JSON.stringify({game})
     }).then(resp => resp.json())
-    .then(pickRandom(game)).then(console.log(game))
+    .then(pickRandom(game))
 }
 
 function endQuiz(game) {
-   // e.preventDefault()
     let endGameDiv = document.createElement('div')
 
-    endGameDiv.innerHTML = `<div class = "game-header-box">Congratulations, ${newUser.name}, you earned ${newUser.score}!`
-    // let highScore = document.createElement("div")
-    // highScore.className = ("high-score")
+    endGameDiv.innerHTML = `<div class = "game-header-box">Congratulations, 
+    ${newUser.name}, you earned ${newUser.score}!`
     
     let newGameBtn = document.createElement('button')
     newGameBtn.innerText = "Start a new quiz"
@@ -233,21 +215,17 @@ function endQuiz(game) {
     endGameDiv.append(newGameBtn)
     qBox.append(endGameDiv)
 
-    endGameDiv.innerHTML = `<div class = "game-header-box">Thanks for playing, ${newUser.name}! Click <a href ="file:///Users/maryselig/Documents/fewpjs-project-mode-guidelines/ArchitectureTriviaFrontEnd/home.html">here </a>to play again! <br> 
-                            <button type = "button" class = "view-high-score"> View High Scores </button> </div>`
-    // let newGameBtn = document.createElement('button')
-    // newGameBtn.innerText = "Start a new quiz"
-    // newGameBtn.addEventListener('click', startNew)
-    // endGameDiv.append(newGameBtn)
+    endGameDiv.innerHTML = 
+    `<div class = "game-header-box">Thanks for playing, ${newUser.name}! 
+    Click <a href ="file:///Users/maryselig/Documents/fewpjs-project-mode-guidelines/ArchitectureTriviaFrontEnd/home.html">here </a>to play again! <br> 
+    <button type = "button" class = "view-high-score"> View High Scores </button> </div>`
+
     qBox.prepend(endGameDiv)
 
-    //    createGameInApi(e)
-
-    //Show High Score 
     let viewHighScore = document.querySelector(".view-high-score")
     viewHighScore.addEventListener('click', e => showHighScore(e))
 
-    const showHighScore = (e) => {
+const showHighScore = (e) => {
         
         return fetch('http://localhost:3000/games/leaderboard')
         .then(resp => resp.json())
@@ -258,31 +236,14 @@ function endQuiz(game) {
         let ul = document.createElement('ul')
             ul.className = "game-header-box"
         
-           
-        
         highscores.forEach(highscore => {
             let li = document.createElement('li')
             li.innerHTML = `<h4> Name: ${highscore.user}: ${highscore.score} </h4>`
             ul.append(li)
            qBox.prepend(ul)
             
-        })
-        
-        // games.append('li')
-        // li.append(endGameDiv)
-    
-        
-    }
-    
-}
+        })}}
    
-
-// Practice
-    // Render the page
-
-// End Practice
-    
-
 function startNew() {
     document.location.reload()
 }
