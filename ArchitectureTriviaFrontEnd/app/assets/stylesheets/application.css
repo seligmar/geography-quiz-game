@@ -67,6 +67,7 @@
     padding: 22px;
     height: 25%;
     background-color: crimson;
+    margin: 0;
  }
 
 
@@ -107,6 +108,10 @@
     margin-right: auto;
     display: block; 
  
+  }
+
+  li{
+    list-style-type: none;
   }
 
 

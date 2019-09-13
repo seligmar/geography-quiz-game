@@ -218,7 +218,9 @@ function endQuiz(game) {
     endGameDiv.innerHTML = 
     `<div class = "game-header-box">Thanks for playing, ${newUser.name}! 
     Click <a href ="file:///Users/maryselig/Documents/fewpjs-project-mode-guidelines/ArchitectureTriviaFrontEnd/home.html">here </a>to play again! <br> 
-    <button type = "button" class = "view-high-score"> View High Scores </button> </div>`
+    <button type = "button" onClick="this.disabled = true" class = "view-high-score"> View High Scores </button> </div>`
+    // This variable just disables the high score button so it clicks only once
+    let onClick = "this.disabled = true"
 
     qBox.prepend(endGameDiv)
 
@@ -235,10 +237,11 @@ const showHighScore = (e) => {
     const renderScore = highscores => {
         let ul = document.createElement('ul')
             ul.className = "game-header-box"
+            ul.innerHTML = `<h3> Highscores </h3>`
         
         highscores.forEach(highscore => {
             let li = document.createElement('li')
-            li.innerHTML = `<h4> Name: ${highscore.user}: ${highscore.score} </h4>`
+            li.innerHTML = `<h4>  ${highscore.user}: ${highscore.score} </h4>`
             ul.append(li)
            qBox.prepend(ul)
             
